@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "logback.file-path",
+      "type": "java.lang.String",
+      "description": "logback日志文件存储目录."
+    }
+  ]
+}

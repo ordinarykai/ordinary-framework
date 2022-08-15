@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.github.ordinarykai.framework.web.apilog.config.ApiLogAutoConfiguration, \
+  com.github.ordinarykai.framework.web.swagger.config.SwaggerAutoConfiguration, \
+  com.github.ordinarykai.framework.web.web.config.WebAutoConfiguration

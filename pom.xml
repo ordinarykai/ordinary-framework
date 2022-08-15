@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.ordinarykai</groupId>
+    <artifactId>ordinary-framework</artifactId>
+    <version>1.0.0</version>
+    <name>ordinary-framework</name>
+    <packaging>pom</packaging>
+    <description>ordinary-framework</description>
+
+    <properties>
+        <spring.boot.version>2.7.2</spring.boot.version>
+        <compile.version>8</compile.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <modules>
+        <module>spring-boot-dependencies</module>
+        <module>spring-boot-starter-parent</module>
+        <module>spring-boot-starter-excel</module>
+        <module>spring-boot-starter-web</module>
+        <module>spring-boot-starter-redis</module>
+        <module>spring-boot-starter-auth</module>
+        <module>spring-boot-starter-common</module>
+        <module>spring-boot-starter-mybatis-plus</module>
+        <module>spring-boot-starter-sms</module>
+        <module>spring-boot-starter-file</module>
+        <module>spring-boot-starter-test</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <source>${compile.version}</source>
+                    <target>${compile.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
