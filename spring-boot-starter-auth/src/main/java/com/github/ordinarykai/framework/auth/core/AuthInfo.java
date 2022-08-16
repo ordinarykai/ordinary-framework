@@ -16,7 +16,7 @@ public class AuthInfo {
     /**
      * 当前登录者ID
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 当前登录者账号
@@ -26,7 +26,7 @@ public class AuthInfo {
     /**
      * 当前登录者角色ID集合
      */
-    private List<Integer> roleIds;
+    private List<Long> roleIds;
 
     /**
      * 当前登录者权限集合
