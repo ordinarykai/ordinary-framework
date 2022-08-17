@@ -16,10 +16,6 @@ public class ApiLogProperties {
      */
     private boolean enable = false;
     /**
-     * api日志入库接口url，为空表示不入库
-     */
-    private String url;
-    /**
      * 需要开启api日志的接口前缀集合
      */
     private List<String> prefix;

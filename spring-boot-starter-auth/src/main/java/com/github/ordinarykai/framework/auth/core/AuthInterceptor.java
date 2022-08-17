@@ -45,6 +45,8 @@ public class AuthInterceptor implements HandlerInterceptor {
         if (preAuthorize != null && authInfo.getPermissions().contains(preAuthorize.value())) {
             return failed(response, ResultCode.FORBIDDEN);
         }
+        // 响应头添加用户ID
+        response.setHeader("auth_id", String.valueOf(authInfo.getId()));
         return true;
     }
 

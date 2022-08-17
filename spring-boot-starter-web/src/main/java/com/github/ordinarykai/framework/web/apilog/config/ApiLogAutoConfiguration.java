@@ -1,8 +1,6 @@
 package com.github.ordinarykai.framework.web.apilog.config;
 
 import com.github.ordinarykai.framework.web.apilog.core.filter.ApiLogFilter;
-import com.github.ordinarykai.framework.web.apilog.core.service.ApiLogService;
-import com.github.ordinarykai.framework.web.apilog.core.service.ApiLogServiceImpl;
 import com.github.ordinarykai.framework.web.web.config.WebAutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -25,17 +23,12 @@ public class ApiLogAutoConfiguration {
         return new RestTemplate();
     }
 
-    @Bean
-    public ApiLogService apiLogService(RestTemplate restTemplate, ApiLogProperties apiLogProperties) {
-        return new ApiLogServiceImpl(restTemplate, apiLogProperties.getUrl());
-    }
-
     /**
      * 创建 ApiAccessLogFilter Bean，记录 API 请求日志
      */
     @Bean
-    public FilterRegistrationBean<ApiLogFilter> apiAccessLogFilter(ApiLogProperties apiLogProperties, ApiLogService apiLogService) {
-        ApiLogFilter filter = new ApiLogFilter(apiLogProperties.getPrefix(), apiLogService);
+    public FilterRegistrationBean<ApiLogFilter> apiAccessLogFilter(ApiLogProperties apiLogProperties) {
+        ApiLogFilter filter = new ApiLogFilter(apiLogProperties.getPrefix());
         FilterRegistrationBean<ApiLogFilter> bean = new FilterRegistrationBean<>(filter);
         bean.setOrder(0);
         return bean;
