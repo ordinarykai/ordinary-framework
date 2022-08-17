@@ -1,5 +1,6 @@
 package com.github.ordinarykai.framework.auth.core;
 
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import com.github.ordinarykai.framework.auth.config.AuthProperties;
@@ -42,7 +43,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         }
         // 判断登录用户是否有权限访问该路径
         PreAuthorize preAuthorize = handler.getClass().getAnnotation(PreAuthorize.class);
-        if (preAuthorize != null && authInfo.getPermissions().contains(preAuthorize.value())) {
+        if (preAuthorize != null && CollectionUtil.isNotEmpty(authInfo.getPermissions()) && authInfo.getPermissions().contains(preAuthorize.value())) {
             return failed(response, ResultCode.FORBIDDEN);
         }
         // 响应头添加用户ID
