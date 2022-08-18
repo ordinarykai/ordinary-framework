@@ -11,7 +11,7 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
     <!-- 定义日志文件名称前缀 -->
     <springProperty scope="context" name="APPLICATION_NAME" source="spring.application.name"/>
     <!-- 定义本项目Path From Source Root -->
-<!--    <property name="PROJECT_PATH" value="com.github.ordinarykai"/>-->
+<!--    <property name="PROJECT_PATH" value="io.github.ordinarykai"/>-->
 
     <!-- ch.qos.logback.core.ConsoleAppender 表示控制台输出 -->
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">

@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.github.ordinarykai.framework.auth.config.AuthAutoConfiguration
+  io.github.ordinarykai.framework.auth.config.AuthAutoConfiguration

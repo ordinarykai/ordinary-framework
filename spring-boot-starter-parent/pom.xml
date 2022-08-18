@@ -10,7 +10,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.github.ordinarykai</groupId>
+    <groupId>io.github.ordinarykai</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>1.0.0</version>
     <name>spring-boot-starter-parent</name>
@@ -25,42 +25,42 @@
         <dependencies>
             <!-- 业务组件 -->
             <dependency>
-                <groupId>com.github.ordinarykai</groupId>
+                <groupId>io.github.ordinarykai</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${ordinarykai-boot.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.ordinarykai</groupId>
+                <groupId>io.github.ordinarykai</groupId>
                 <artifactId>spring-boot-starter-excel</artifactId>
                 <version>${ordinarykai-boot.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.ordinarykai</groupId>
+                <groupId>io.github.ordinarykai</groupId>
                 <artifactId>spring-boot-starter-redis</artifactId>
                 <version>${ordinarykai-boot.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.ordinarykai</groupId>
+                <groupId>io.github.ordinarykai</groupId>
                 <artifactId>spring-boot-starter-auth</artifactId>
                 <version>${ordinarykai-boot.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.ordinarykai</groupId>
+                <groupId>io.github.ordinarykai</groupId>
                 <artifactId>spring-boot-starter-mybatis-plus</artifactId>
                 <version>${ordinarykai-boot.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.ordinarykai</groupId>
+                <groupId>io.github.ordinarykai</groupId>
                 <artifactId>spring-boot-starter-sms</artifactId>
                 <version>${ordinarykai-boot.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.ordinarykai</groupId>
+                <groupId>io.github.ordinarykai</groupId>
                 <artifactId>spring-boot-starter-file</artifactId>
                 <version>${ordinarykai-boot.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.ordinarykai</groupId>
+                <groupId>io.github.ordinarykai</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>${ordinarykai-boot.version}</version>
             </dependency>

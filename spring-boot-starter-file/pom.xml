@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github.ordinarykai</groupId>
+        <groupId>io.github.ordinarykai</groupId>
         <artifactId>ordinary-framework</artifactId>
         <version>1.0.0</version>
     </parent>
@@ -20,7 +20,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.ordinarykai</groupId>
+            <groupId>io.github.ordinarykai</groupId>
             <artifactId>spring-boot-starter-common</artifactId>
             <version>1.0.0</version>
         </dependency>

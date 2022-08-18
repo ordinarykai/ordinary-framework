@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.github.ordinarykai.framework.redis.config.RedisAutoConfiguration
+  io.github.ordinarykai.framework.redis.config.RedisAutoConfiguration
