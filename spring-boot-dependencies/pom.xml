@@ -9,6 +9,7 @@
     <name>spring-boot-dependencies</name>
     <packaging>pom</packaging>
     <description>spring-boot-dependencies</description>
+    <url>https://github.com/ordinarykai/ordinary-framework</url>
 
     <properties>
         <spring.boot.version>2.7.2</spring.boot.version>

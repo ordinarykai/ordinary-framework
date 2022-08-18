@@ -9,6 +9,7 @@
     <name>ordinary-framework</name>
     <packaging>pom</packaging>
     <description>ordinary-framework</description>
+    <url>https://github.com/ordinarykai/ordinary-framework</url>
 
     <properties>
         <spring.boot.version>2.7.2</spring.boot.version>

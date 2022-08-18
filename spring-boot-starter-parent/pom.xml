@@ -16,6 +16,7 @@
     <name>spring-boot-starter-parent</name>
     <packaging>pom</packaging>
     <description>spring-boot-starter-parent</description>
+    <url>https://github.com/ordinarykai/ordinary-framework</url>
 
     <properties>
         <ordinarykai-boot.version>1.0.0</ordinarykai-boot.version>
