@@ -4,8 +4,11 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import io.github.ordinarykai.framework.auth.config.AuthProperties;
+import io.github.ordinarykai.framework.common.exception.ForbiddenException;
+import io.github.ordinarykai.framework.common.exception.UnauthorizedException;
 import io.github.ordinarykai.framework.common.result.ResultCode;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,12 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static io.github.ordinarykai.framework.common.result.ResultCode.FORBIDDEN;
+import static io.github.ordinarykai.framework.common.result.ResultCode.UNAUTHORIZED;
+
 /**
  * 用户认证拦截器
  *
  * @author kai
  * @date 2022/3/12 14:21
  */
+@Slf4j
 @AllArgsConstructor
 public class AuthInterceptor implements HandlerInterceptor {
 
@@ -62,6 +69,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         res.set("message", resultCode.getMessage());
         PrintWriter out = response.getWriter();
         out.append(res.toString());
+        log.warn(resultCode.getMessage());
         return false;
     }
 
