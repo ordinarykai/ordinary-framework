@@ -1,6 +1,5 @@
 package io.github.ordinarykai.framework.web.web.config;
 
-import io.github.ordinarykai.framework.web.web.filter.CacheRequestBodyFilter;
 import io.github.ordinarykai.framework.web.web.handeler.GlobalExceptionHandler;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -39,14 +38,6 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config); // 对接口配置跨域设置
         return createFilterBean(new CorsFilter(source),  Integer.MIN_VALUE);
-    }
-
-    /**
-     * 创建 RequestBodyCacheFilter Bean，可重复读取请求内容
-     */
-    @Bean
-    public FilterRegistrationBean<CacheRequestBodyFilter> requestBodyCacheFilter() {
-        return createFilterBean(new CacheRequestBodyFilter(), Integer.MIN_VALUE + 500);
     }
 
     private static <T extends Filter> FilterRegistrationBean<T> createFilterBean(T filter, Integer order) {
