@@ -46,7 +46,7 @@ public class CodeGenerator {
                             // RestController控制器
                             .controllerBuilder().enableRestStyle()
                             // service名称格式
-                            .serviceBuilder().formatServiceFileName("s%Service")
+                            .serviceBuilder().formatServiceFileName("%sService")
                             // mapper加上@Mapper注解
                             .mapperBuilder().mapperAnnotation(Mapper.class)
                             // 开启lombok模型
