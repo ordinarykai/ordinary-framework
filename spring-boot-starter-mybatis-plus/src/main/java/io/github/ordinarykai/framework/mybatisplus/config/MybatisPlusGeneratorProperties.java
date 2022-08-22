@@ -47,6 +47,10 @@ public class MybatisPlusGeneratorProperties {
          */
         private IdType idType = IdType.AUTO;
         /**
+         * oracle数据库需要配置此字段，指定表空间
+         */
+        private String schemaName;
+        /**
          * 指定表前缀
          */
         private List<String> tablePrefix = Collections.emptyList();

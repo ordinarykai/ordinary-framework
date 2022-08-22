@@ -1,13 +1,13 @@
 package io.github.ordinarykai.framework.mybatisplus.core.generator;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
+import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import io.github.ordinarykai.framework.mybatisplus.config.MybatisPlusGeneratorProperties;
 import lombok.AllArgsConstructor;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
+import org.springframework.util.StringUtils;
 
 /**
  * @author kai
@@ -25,7 +25,13 @@ public class CodeGenerator {
     }
 
     public void execute() {
-        FastAutoGenerator fastAutoGenerator = FastAutoGenerator.create(dataSourceProperties.getUrl(), dataSourceProperties.getUsername(), dataSourceProperties.getPassword());
+        DataSourceConfig.Builder dataSourceBuilder  = new DataSourceConfig.Builder(dataSourceProperties.getUrl(),
+                dataSourceProperties.getUsername(),
+                dataSourceProperties.getPassword());
+        if(StringUtils.hasText(properties.getSchemaName())){
+            dataSourceBuilder.schema(properties.getSchemaName());
+        }
+        FastAutoGenerator fastAutoGenerator = FastAutoGenerator.create(dataSourceBuilder);
         fastAutoGenerator.globalConfig(builder -> {
                     // 设置作者
                     builder.author(properties.getAuthor())
