@@ -1,6 +1,7 @@
 package io.github.ordinarykai.framework.web.apilog.core.entity;
 
 import lombok.Data;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 
@@ -36,10 +37,6 @@ public class ApiLog {
      */
     private String userIp;
     /**
-     * 浏览器 UA
-     */
-    private String userAgent;
-    /**
      * 开始请求时间
      */
     private LocalDateTime beginTime;
@@ -56,11 +53,19 @@ public class ApiLog {
     public String toString() {
         return "end " + requestMethod + " " + requestUri + "\n" +
                 "==================================================\n" +
-                "user = {\"userId\":\"" + userId + "\",\"userIp\":\"" + userIp + "\",\"userAgent\":\"" + userAgent + "\"}\n" +
+                "user = {\"userId\":\"" + userId + "\",\"userIp\":\"" + userIp + "\"}\n" +
                 "time = {\"beginTime\":\"" + beginTime + "\",\"endTime\":\"" + endTime + "\",\"duration\":\"" + duration + "\"}\n" +
                 "params = " + requestParams + "\n" +
-                "result = " + resultData + "\n" +
+                "result = " + this.getShortResultData() + "\n" +
                 "==================================================";
+    }
+
+    private String getShortResultData() {
+        // 错误结果只展示100个字符
+        if (StringUtils.hasText(resultData) && !resultData.contains("200") && resultData.length() > 100) {
+            return resultData.substring(0, 99) + "...";
+        }
+        return resultData;
     }
 
 }

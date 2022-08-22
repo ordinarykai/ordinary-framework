@@ -1,16 +1,17 @@
 package io.github.ordinarykai.framework.web.apilog.core.filter;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.map.MapBuilder;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.servlet.ServletUtil;
 import io.github.ordinarykai.framework.web.apilog.core.entity.ApiLog;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.ContentCachingResponseWrapper;
-import org.springframework.web.util.WebUtils;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -22,6 +23,8 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
+import static io.github.ordinarykai.framework.common.constant.HeaderConstant.USER_ID;
 
 /**
  * API 访问日志 Filter
@@ -48,60 +51,66 @@ public class ApiLogFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         // 获得开始时间
         LocalDateTime beginTim = LocalDateTime.now();
-        // 获得参数
-        Map<String, String> queryString = ServletUtil.getParamMap(request);
         // 打印请求uri
-        log.info("start "+ request.getMethod() + " " + request.getRequestURI());
-        ContentCachingRequestWrapper nativeRequest = new  ContentCachingRequestWrapper(request);
+        log.info("start " + request.getMethod() + " " + request.getRequestURI());
+        ContentCachingRequestWrapper nativeRequest = new ContentCachingRequestWrapper(request);
         ContentCachingResponseWrapper nativeResponse = new ContentCachingResponseWrapper(response);
         try {
             // 继续过滤器
             filterChain.doFilter(nativeRequest, nativeResponse);
             // 正常执行，记录日志
-            createApiLog(nativeRequest, nativeResponse, beginTim, queryString, null);
+            createApiLog(nativeRequest, nativeResponse, beginTim);
         } catch (Exception ex) {
             // 异常执行，记录日志
-            createApiLog(nativeRequest, nativeResponse, beginTim, queryString, ex);
+            createApiLog(nativeRequest, nativeResponse, beginTim);
             throw ex;
         }
     }
 
-    private void createApiLog(HttpServletRequest request, HttpServletResponse response, LocalDateTime beginTime,
-                              Map<String, String> queryString, Exception ex) {
+    private void createApiLog(ContentCachingRequestWrapper request, ContentCachingResponseWrapper response, LocalDateTime beginTime) {
         ApiLog apiLog = new ApiLog();
         try {
-            this.buildApiLog(apiLog, request, response, beginTime, queryString, ex);
+            this.buildApiLog(apiLog, request, response, beginTime);
         } catch (Throwable th) {
             log.error("[createApiLog][uri({}) log({}) 发生异常]", request.getRequestURI(), apiLog, th);
         }
     }
 
-    private void buildApiLog(ApiLog apiLog, HttpServletRequest request, HttpServletResponse response, LocalDateTime beginTime,
-                             Map<String, String> queryString,Exception ex) throws IOException {
+    private void buildApiLog(ApiLog apiLog, ContentCachingRequestWrapper request, ContentCachingResponseWrapper response, LocalDateTime beginTime) throws IOException {
 
-        ContentCachingRequestWrapper nativeRequest = WebUtils.getNativeRequest(request, ContentCachingRequestWrapper.class);
-        ContentCachingResponseWrapper nativeResponse = WebUtils.getNativeResponse(response,ContentCachingResponseWrapper.class);
+        // 获得queryParams
+        Map<String, String> queryParams = ServletUtil.getParamMap(request);
+        // 获得requestBody
         String requestBody = "";
-        String responseBody = "";
-        if(nativeRequest != null && StrUtil.startWithIgnoreCase(request.getContentType(), MediaType.APPLICATION_JSON_VALUE)){
-            requestBody = new String(nativeRequest.getContentAsByteArray());
+        if (StrUtil.startWithIgnoreCase(request.getContentType(), MediaType.APPLICATION_JSON_VALUE)) {
+            requestBody = new String(request.getContentAsByteArray());
         }
-        if(nativeResponse != null && StrUtil.startWithIgnoreCase(response.getContentType(), MediaType.APPLICATION_JSON_VALUE)){
-            responseBody = new String(nativeResponse.getContentAsByteArray());
-            nativeResponse.copyBodyToResponse();
+        // 获得requestParams
+        MapBuilder<String, Object> builder = MapUtil.builder();
+        if (!queryParams.isEmpty()) {
+            builder.put("query", queryParams);
+        }
+        if (StringUtils.hasText(requestBody)) {
+            builder.put("body", requestBody);
+        }
+        Map<String, Object> requestParams = builder.build();
+        // 获得responseBody
+        String responseBody = "";
+        if (StrUtil.startWithIgnoreCase(response.getContentType(), MediaType.APPLICATION_JSON_VALUE)) {
+            responseBody = new String(response.getContentAsByteArray());
+            response.copyBodyToResponse();
         }
 
         // 请求相关
         apiLog.setRequestMethod(request.getMethod());
         apiLog.setRequestUri(request.getRequestURI());
-        Map<String, Object> requestParams = MapUtil.<String, Object>builder().put("query", queryString).put("body", requestBody).build();
         apiLog.setRequestParams(requestParams.toString());
         apiLog.setResultData(responseBody);
 
         // 用户相关
-        apiLog.setUserId(response.getHeader("auth_id"));
+        String userId = response.getHeader(USER_ID);
+        apiLog.setUserId(userId != null ? userId : "");
         apiLog.setUserIp(ServletUtil.getClientIP(request));
-        apiLog.setUserAgent(request.getHeader("User-Agent"));
 
         // 持续时间
         apiLog.setBeginTime(beginTime);

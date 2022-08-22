@@ -82,10 +82,10 @@ public class HuaweiYunSmsServiceImpl implements SmsService {
      * 构造请求Body体
      */
     private static String buildRequestBody(String sender,
-                                   String receiver,
-                                   String templateId,
-                                   String templateParas,
-                                   String signature) {
+                                           String receiver,
+                                           String templateId,
+                                           String templateParas,
+                                           String signature) {
         Map<String, String> map = new HashMap<>();
         map.put("from", sender);
         map.put("to", receiver);
@@ -98,7 +98,7 @@ public class HuaweiYunSmsServiceImpl implements SmsService {
     /**
      * 构造X-WSSE参数值
      */
-   private static String buildWsseHeader(String appKey, String appSecret) throws NoSuchAlgorithmException {
+    private static String buildWsseHeader(String appKey, String appSecret) throws NoSuchAlgorithmException {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
         String time = sdf.format(new Date());
         String nonce = UUID.randomUUID().toString().replace("-", "");

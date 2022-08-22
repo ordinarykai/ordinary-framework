@@ -12,10 +12,11 @@ public interface SmsService {
 
     /**
      * 发送短信
-     * @param phone 手机号
-     * @param templateKey 自定义模板key
+     *
+     * @param phone         手机号
+     * @param templateKey   自定义模板key
      * @param templatePrams 模板参数
      */
-    SmsResult send(String phone, String templateKey, TreeMap<String,String> templatePrams);
+    SmsResult send(String phone, String templateKey, TreeMap<String, String> templatePrams);
 
 }

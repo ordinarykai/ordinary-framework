@@ -53,7 +53,7 @@ public class SwaggerProperties {
 
     @Data
     @AllArgsConstructor
-    public static class Contact{
+    public static class Contact {
         /**
          * 作者
          */

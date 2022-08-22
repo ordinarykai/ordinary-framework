@@ -6,9 +6,9 @@ import cn.smallbun.screw.core.engine.EngineFileType;
 import cn.smallbun.screw.core.engine.EngineTemplateType;
 import cn.smallbun.screw.core.execute.DocumentationExecute;
 import cn.smallbun.screw.core.process.ProcessConfig;
-import io.github.ordinarykai.framework.mybatisplus.config.MybatisPlusGeneratorProperties;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import io.github.ordinarykai.framework.mybatisplus.config.MybatisPlusGeneratorProperties;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 

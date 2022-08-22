@@ -37,7 +37,7 @@ public class WebAutoConfiguration implements WebMvcConfigurer {
         // 创建 UrlBasedCorsConfigurationSource 对象
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config); // 对接口配置跨域设置
-        return createFilterBean(new CorsFilter(source),  Integer.MIN_VALUE);
+        return createFilterBean(new CorsFilter(source), Integer.MIN_VALUE);
     }
 
     private static <T extends Filter> FilterRegistrationBean<T> createFilterBean(T filter, Integer order) {

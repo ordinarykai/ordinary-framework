@@ -4,8 +4,6 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
 import io.github.ordinarykai.framework.auth.config.AuthProperties;
-import io.github.ordinarykai.framework.common.exception.ForbiddenException;
-import io.github.ordinarykai.framework.common.exception.UnauthorizedException;
 import io.github.ordinarykai.framework.common.result.ResultCode;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,8 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import static io.github.ordinarykai.framework.common.result.ResultCode.FORBIDDEN;
-import static io.github.ordinarykai.framework.common.result.ResultCode.UNAUTHORIZED;
+import static io.github.ordinarykai.framework.common.constant.HeaderConstant.USER_ID;
 
 /**
  * 用户认证拦截器
@@ -54,7 +51,7 @@ public class AuthInterceptor implements HandlerInterceptor {
             return failed(response, ResultCode.FORBIDDEN);
         }
         // 响应头添加用户ID
-        response.setHeader("auth_id", String.valueOf(authInfo.getId()));
+        response.setHeader(USER_ID, String.valueOf(authInfo.getId()));
         return true;
     }
 

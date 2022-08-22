@@ -3,9 +3,9 @@ package io.github.ordinarykai.framework.auth.core;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
 import io.github.ordinarykai.framework.auth.config.AuthProperties;
-import io.github.ordinarykai.framework.redis.core.RedisService;
 import io.github.ordinarykai.framework.common.exception.UnauthorizedException;
 import io.github.ordinarykai.framework.common.util.ServletUtil;
+import io.github.ordinarykai.framework.redis.core.RedisService;
 import org.springframework.util.StringUtils;
 
 import java.util.Objects;
