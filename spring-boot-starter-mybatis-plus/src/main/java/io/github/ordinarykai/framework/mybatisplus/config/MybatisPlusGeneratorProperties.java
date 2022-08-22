@@ -1,5 +1,6 @@
 package io.github.ordinarykai.framework.mybatisplus.config;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -41,6 +42,10 @@ public class MybatisPlusGeneratorProperties {
          * 模块名
          */
         private String moduleName;
+        /**
+         * 主键生成类型，默认数据库ID自增，Oracle等数据库请修改成对应类型
+         */
+        private IdType idType = IdType.AUTO;
         /**
          * 指定表前缀
          */

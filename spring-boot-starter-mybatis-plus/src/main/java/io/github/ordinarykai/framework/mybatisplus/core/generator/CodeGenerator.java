@@ -1,10 +1,12 @@
 package io.github.ordinarykai.framework.mybatisplus.core.generator;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import io.github.ordinarykai.framework.mybatisplus.config.MybatisPlusGeneratorProperties;
 import lombok.AllArgsConstructor;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 
 /**
@@ -43,6 +45,10 @@ public class CodeGenerator {
                             .addTablePrefix(properties.getTablePrefix())
                             // RestController控制器
                             .controllerBuilder().enableRestStyle()
+                            // service名称格式
+                            .serviceBuilder().formatServiceFileName("s%Service")
+                            // mapper加上@Mapper注解
+                            .mapperBuilder().mapperAnnotation(Mapper.class)
                             // 开启lombok模型
                             .entityBuilder().enableLombok()
                             // 开启链式模型
@@ -50,7 +56,7 @@ public class CodeGenerator {
                             // 生成字段注解
                             .enableTableFieldAnnotation()
                             // 指定生成的主键的ID类型为INPUT
-                            .idType(IdType.INPUT)
+                            .idType(properties.getIdType())
                             // 开启ActiveRecord模式
                             .enableActiveRecord();
                 })
