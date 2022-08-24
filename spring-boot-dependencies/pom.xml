@@ -5,7 +5,7 @@
 
     <groupId>io.github.ordinarykai</groupId>
     <artifactId>spring-boot-dependencies</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <name>spring-boot-dependencies</name>
     <packaging>pom</packaging>
     <description>spring-boot-dependencies</description>
@@ -13,7 +13,7 @@
 
     <properties>
         <spring.boot.version>2.7.2</spring.boot.version>
-        <ordinarykai-boot.version>1.0.0</ordinarykai-boot.version>
+        <ordinarykai-boot.version>1.1.0</ordinarykai-boot.version>
     </properties>
 
     <dependencyManagement>

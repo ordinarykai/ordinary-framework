@@ -5,7 +5,7 @@
 
     <groupId>io.github.ordinarykai</groupId>
     <artifactId>ordinary-framework</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <name>ordinary-framework</name>
     <packaging>pom</packaging>
     <description>ordinary-framework</description>
@@ -28,6 +28,7 @@
         <module>spring-boot-starter-mybatis-plus</module>
         <module>spring-boot-starter-sms</module>
         <module>spring-boot-starter-file</module>
+        <module>spring-boot-starter-iptv</module>
         <module>spring-boot-starter-test</module>
     </modules>
 
