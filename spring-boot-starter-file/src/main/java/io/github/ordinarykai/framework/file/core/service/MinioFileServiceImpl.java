@@ -46,16 +46,15 @@ public class MinioFileServiceImpl implements FileService {
     public String upload(MultipartFile file) {
         try {
             // 创建存储桶
-            String bucketName = properties.getBucketName() + LocalDate.now().format(DateTimeFormatter.ofPattern("-yyyyMM"));
-            this.makeBucket(bucketName);
+            this.makeBucket(properties.getBucketName());
             // 文件类型校验
             byte[] bytes = IoUtil.readBytes(file.getInputStream());
             String type = FileTypeUtil.allowUpload(allowedTypes, bytes, file.getOriginalFilename());
             // 随机对象名
-            String objectName = UUID.fastUUID().toString(true) + "." + type;
+            String objectName = LocalDate.now().format(DateTimeFormatter.ofPattern("-yyyyMM")) + "/" + UUID.fastUUID().toString(true) + "." + type;
             // 存储
-            this.putObject(bucketName, bytes, objectName, file.getContentType());
-            return properties.getEndpoint() + ":" + properties.getPort() + "/" + bucketName + "/" + objectName;
+            this.putObject(properties.getBucketName(), bytes, objectName, file.getContentType());
+            return properties.getEndpoint() + ":" + properties.getPort() + "/" + properties.getBucketName() + "/" + objectName;
         } catch (Exception e) {
             // TODO: 2022/9/6  
             throw new ApiException("上传失败");
