@@ -51,7 +51,7 @@ public class MinioFileServiceImpl implements FileService {
             byte[] bytes = IoUtil.readBytes(file.getInputStream());
             String type = FileTypeUtil.allowUpload(allowedTypes, bytes, file.getOriginalFilename());
             // 随机对象名
-            String objectName = LocalDate.now().format(DateTimeFormatter.ofPattern("-yyyyMM")) + "/" + UUID.fastUUID().toString(true) + "." + type;
+            String objectName = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM")) + "/" + UUID.fastUUID().toString(true) + "." + type;
             // 存储
             this.putObject(properties.getBucketName(), bytes, objectName, file.getContentType());
             return properties.getEndpoint() + ":" + properties.getPort() + "/" + properties.getBucketName() + "/" + objectName;
