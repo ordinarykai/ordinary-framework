@@ -18,7 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 public class SmsAutoConfiguration {
 
     @Bean
-    public SmsService smsService(SmsProperties smsProperties) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public SmsService smsService(SmsProperties smsProperties) throws ReflectiveOperationException {
         Class<? extends SmsService> smsService = smsProperties.getChannel().getSmsService();
         return smsService.getConstructor(SmsProperties.class).newInstance(smsProperties);
     }

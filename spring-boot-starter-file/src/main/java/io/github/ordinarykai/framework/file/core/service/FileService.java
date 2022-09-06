@@ -1,4 +1,4 @@
-package io.github.ordinarykai.framework.file.core;
+package io.github.ordinarykai.framework.file.core.service;
 
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,7 +1,6 @@
 package io.github.ordinarykai.framework.file.config;
 
-import io.github.ordinarykai.framework.file.core.FileService;
-import io.github.ordinarykai.framework.file.core.impl.FileServiceImpl;
+import io.github.ordinarykai.framework.file.core.service.FileService;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,8 +14,8 @@ import org.springframework.context.annotation.Configuration;
 public class FileUploadAutoConfiguration {
 
     @Bean
-    public FileService FileService(FileUploadProperties properties) {
-        return new FileServiceImpl(properties);
+    public FileService fileService(FileUploadProperties properties) throws ReflectiveOperationException {
+        return properties.getService().getConstructor(FileUploadProperties.class).newInstance(properties);
     }
 
 }
