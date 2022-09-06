@@ -115,7 +115,7 @@ public class ApiLogFilter extends OncePerRequestFilter {
         // 持续时间
         apiLog.setBeginTime(beginTime);
         apiLog.setEndTime(LocalDateTime.now());
-        apiLog.setDuration((int) Duration.between(apiLog.getEndTime(), apiLog.getBeginTime()).toMillis());
+        apiLog.setDuration((int) Duration.between(apiLog.getBeginTime(), apiLog.getEndTime()).toMillis());
 
         log.info(apiLog.toString());
     }
