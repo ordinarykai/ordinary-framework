@@ -54,6 +54,16 @@
             </dependency>
             <dependency>
                 <groupId>io.github.ordinarykai</groupId>
+                <artifactId>spring-boot-starter-mybatis-plus-mysql</artifactId>
+                <version>1.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.ordinarykai</groupId>
+                <artifactId>spring-boot-starter-mybatis-plus-oracle</artifactId>
+                <version>1.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.ordinarykai</groupId>
                 <artifactId>spring-boot-starter-sms</artifactId>
                 <version>${ordinarykai-boot.version}</version>
             </dependency>

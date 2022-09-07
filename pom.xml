@@ -30,7 +30,6 @@
         <module>spring-boot-starter-mybatis-plus-oracle</module>
         <module>spring-boot-starter-sms</module>
         <module>spring-boot-starter-file</module>
-        <module>spring-boot-starter-iptv</module>
         <module>spring-boot-starter-test</module>
     </modules>
 
