@@ -26,6 +26,8 @@
         <module>spring-boot-starter-auth</module>
         <module>spring-boot-starter-common</module>
         <module>spring-boot-starter-mybatis-plus</module>
+        <module>spring-boot-starter-mybatis-plus-mysql</module>
+        <module>spring-boot-starter-mybatis-plus-oracle</module>
         <module>spring-boot-starter-sms</module>
         <module>spring-boot-starter-file</module>
         <module>spring-boot-starter-iptv</module>
